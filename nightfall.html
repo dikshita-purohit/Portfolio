@@ -81,6 +81,12 @@
                 }
             }
         }
+
+        document.querySelectorAll('#nav-menu a, #nav-menu button').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('nav-toggle').checked = false;
+            });
+        });
     </script>
     <style>
         body {
@@ -138,6 +144,16 @@
         #nav-toggle:checked~#nav-menu {
             display: flex;
         }
+
+        #nav-toggle:not(:checked)~#nav-menu {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #nav-menu {
+                display: flex !important;
+            }
+        }
     </style>
 </head>
 
@@ -168,6 +184,8 @@
                     href="#features">Features</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
                     href="#mechanics">Mechanics</a>
+                <a class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm"
+                    href="/Folder/DikshitaResume.pdf">Resume</a>
                 <a href="#contact"
                     class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm">Contact
                     Me</a>
@@ -476,8 +494,26 @@
         <footer
             class="bg-surface-container-lowest border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-16 lg:px-20 py-12 gap-6 relative z-10 text-center md:text-left">
             <div class="flex flex-col gap-2">
-                <div class="font-label-mono text-on-surface text-lg font-medium">Nightfang: Vampire Hunt</div>
-                <div class="text-sm text-on-surface-variant">© 2026 Dikshita — All rights reserved</div>
+                <div class="font-label-mono text-on-surface text-lg font-medium">Dikshita B</div>
+                <button id="emailLink" class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                    <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                    Email
+                </button>
+
+                <a href="https://github.com/dikshita-purohit/" target="_blank"
+                    class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                    <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                    GitHub
+                </a>
+                <a href="https://dikshita.artstation.com/" target="_blank"
+                    class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                    <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                    Artstation
+                </a>
+                </br>
+                <div class="text-sm text-on-surface-variant">© 2026 Dikshita — All content and trademarks property of
+                    their
+                    respective owners.</div>
             </div>
         </footer>
     </main>

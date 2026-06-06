@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>DIKSHITA B | Game Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -96,21 +100,74 @@
         }
     </script>
     <style>
-        body { background-color: #110c15; color: #eadfed; overflow-x: hidden; }
-        .glass-panel { background: rgba(22,17,27,0.6); backdrop-filter: blur(20px); border: 1px solid rgba(221,183,255,0.1); }
-        .neon-glow { box-shadow: 0 0 20px rgba(183,109,255,0.3); }
-        .text-glow { text-shadow: 0 0 10px rgba(221,183,255,0.5); }
-        .portal-gradient { background: linear-gradient(45deg, #ddb7ff, #f751a1); }
-        .cosmic-mist { background: radial-gradient(circle at center, rgba(183,109,255,0.15) 0%, transparent 70%); }
-        .floating { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        .particle { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0.3; }
+        body {
+            background-color: #110c15;
+            color: #eadfed;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(22, 17, 27, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(221, 183, 255, 0.1);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(183, 109, 255, 0.3);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(221, 183, 255, 0.5);
+        }
+
+        .portal-gradient {
+            background: linear-gradient(45deg, #ddb7ff, #f751a1);
+        }
+
+        .cosmic-mist {
+            background: radial-gradient(circle at center, rgba(183, 109, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
 
         /* Mobile nav adjustments */
         @media (max-width: 640px) {
-            .nav-name { font-size: 16px; }
-            .nav-pill { padding: 6px 16px; gap: 12px; }
-            .connect-btn { padding: 6px 14px; font-size: 13px; }
+            .nav-name {
+                font-size: 16px;
+            }
+
+            .nav-pill {
+                padding: 6px 16px;
+                gap: 12px;
+            }
+
+            .connect-btn {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
         }
 
         /* Projects grid – stacked single column on mobile, 2-col md, 3-col lg */
@@ -119,16 +176,31 @@
             grid-template-columns: 1fr;
             gap: 24px;
         }
+
         @media (min-width: 768px) {
-            .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
         }
+
         @media (min-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
         }
 
         /* Remove staggered mt offsets on mobile */
-        .project-card-offset { margin-top: 0; }
-        @media (min-width: 768px) { .project-card-offset { margin-top: 6rem; } }
+        .project-card-offset {
+            margin-top: 0;
+        }
+
+        @media (min-width: 768px) {
+            .project-card-offset {
+                margin-top: 6rem;
+            }
+        }
 
         /* Skills grid */
         .skills-grid {
@@ -137,21 +209,52 @@
             gap: 24px 16px;
             justify-items: center;
         }
+
         @media (min-width: 768px) {
-            .skills-grid { grid-template-columns: repeat(4, 1fr); gap: 32px 40px; }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 32px 40px;
+            }
         }
 
         /* Section padding */
-        .section-py { padding-top: 4rem; padding-bottom: 4rem; }
-        @media (min-width: 768px) { .section-py { padding-top: 8rem; padding-bottom: 8rem; } }
+        .section-py {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-py {
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+            }
+        }
 
         /* Floating animation delay helpers */
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1s; }
-        .delay-3 { animation-delay: 1.5s; }
+        .delay-1 {
+            animation-delay: 0.5s;
+        }
 
-        #nav-toggle:checked ~ #nav-menu {
+        .delay-2 {
+            animation-delay: 1s;
+        }
+
+        .delay-3 {
+            animation-delay: 1.5s;
+        }
+
+        #nav-toggle:checked~#nav-menu {
             display: flex;
+        }
+
+        #nav-toggle:not(:checked)~#nav-menu {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #nav-menu {
+                display: flex !important;
+            }
         }
     </style>
 </head>
@@ -161,38 +264,47 @@
     <!-- NAV -->
     <header class="fixed top-0 left-0 right-0 z-50 px-4">
         <nav
-        class="fixed top-0 left-2 right-2 sm:left-4 sm:right-4 md:left-4 md:right-4 lg:left-4 lg:right-4 bg-surface/40 backdrop-blur-xl rounded-2xl mt-4 border border-primary/20 shadow-[0_0_20px_rgba(183,109,255,0.2)] z-50 transition-all duration-300 ease-out px-4 sm:px-8 md:px-16 lg:px-20 py-4">
-        <div class="max-w-container-max mx-auto flex flex-wrap justify-between items-center">
-            <div
-                class="nav-name font-display-xl text-2xl sm:text-3xl font-bold text-primary tracking-wider drop-shadow-[0_0_10px_rgba(221,183,255,0.5)]">
-                Dikshita B
-            </div>
+            class="fixed top-0 left-2 right-2 sm:left-4 sm:right-4 md:left-4 md:right-4 lg:left-4 lg:right-4 bg-surface/40 backdrop-blur-xl rounded-2xl mt-4 border border-primary/20 shadow-[0_0_20px_rgba(183,109,255,0.2)] z-50 transition-all duration-300 ease-out px-4 sm:px-8 md:px-16 lg:px-20 py-4">
+            <div class="max-w-container-max mx-auto flex flex-wrap justify-between items-center">
+                <div
+                    class="nav-name font-display-xl text-2xl sm:text-3xl font-bold text-primary tracking-wider drop-shadow-[0_0_10px_rgba(221,183,255,0.5)]">
+                    Dikshita B
+                </div>
 
-            <input type="checkbox" id="nav-toggle" class="hidden" />
-            <label for="nav-toggle"
-                class="md:hidden flex items-center p-2 text-on-surface-variant hover:text-primary cursor-pointer select-none">
-                <span class="material-symbols-outlined text-3xl">menu</span>
-            </label>
+                <input type="checkbox" id="nav-toggle" class="hidden" />
+                <label for="nav-toggle"
+                    class="md:hidden flex items-center p-2 text-on-surface-variant hover:text-primary cursor-pointer select-none">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </label>
 
-            <div id="nav-menu"
-                class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-4 md:gap-8 items-center border-t border-outline-variant/10 md:border-t-0 pt-4 md:pt-0">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase" href="index.html">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase" href="#about">About Me</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase" href="#Projects">Projects</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase" href="#Skills">Skills</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase" href="#Experience">Experience</a>
-                <a class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm" href="/Folder/DikshitaResume.pdf">Resume</a>
-                <button onclick="document.querySelector('#Summon').scrollIntoView({behavior:'smooth'})"
-                class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm">Contact Me</button>
-            
+                <div id="nav-menu"
+                    class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-4 md:gap-8 items-center border-t border-outline-variant/10 md:border-t-0 pt-4 md:pt-0">
+                    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                        href="index.html">
+                        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                            href="#about">About Me</a>
+                        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                            href="#Projects">Projects</a>
+                        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                            href="#Skills">Skills</a>
+                        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                            href="#Experience">Experience</a>
+                        <a class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm"
+                            href="/Folder/DikshitaResume.pdf">Resume</a>
+                        <button onclick="document.querySelector('#Summon').scrollIntoView({behavior:'smooth'})"
+                            class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm">Contact
+                            Me</button>
+
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
 
     <main>
         <!-- HERO -->
-        <section class="relative h-screen flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-20 overflow-hidden" id="hero">
+        <section
+            class="relative h-screen flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-20 overflow-hidden"
+            id="hero">
             <div class="absolute inset-0 z-0">
                 <img alt="Ethereal Dream Tree Background" class="w-full h-full object-cover opacity-60 scale-110"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Zv1hk4Eiabnjp8otmA5dF0ZaJ1Hp7aP551VVpN7UPCzeATRzRJLvlL5BXHTIy2EiDAwJgR_EpBziojOj7CkGkZTgmJ6L6hMV3smHo9JJZVTdStRPJjZpybQITOSFT4RGwo0feQLEUhroyHUWukzdRbDM_2pvA2gExxqOzA4qOKwU1SBNmur4gYb0TCKehOMkyjA92ncHkrpQ1GRqP6NWes-MAkGjiq9fu1GClvNk8A9XYLmCU4Lrd34uOWkdZM32ZIgJUbp2R3Q">
@@ -200,10 +312,12 @@
                 <div class="cosmic-mist absolute inset-0"></div>
             </div>
             <div class="relative z-10 space-y-4 sm:space-y-6 px-2">
-                <h1 class="font-display-xl text-display-xl uppercase bg-gradient-to-r from-primary via-tertiary to-primary-container bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(221,183,255,0.5)] leading-tight">
+                <h1
+                    class="font-display-xl text-display-xl uppercase bg-gradient-to-r from-primary via-tertiary to-primary-container bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(221,183,255,0.5)] leading-tight">
                     DIKSHITA B
                 </h1>
-                <p class="font-headline-md text-headline-md text-on-surface/80 max-w-2xl mx-auto tracking-wide text-base sm:text-xl">
+                <p
+                    class="font-headline-md text-headline-md text-on-surface/80 max-w-2xl mx-auto tracking-wide text-base sm:text-xl">
                     Unity Developer • Multiplayer Game Developer • AR/AI Explorer
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center pt-4 sm:pt-8">
@@ -221,8 +335,10 @@
 
         <!-- ABOUT -->
         <section class="section-py px-4 sm:px-8 md:px-20 max-w-[1440px] mx-auto" id="about">
-            <div class="glass-panel p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[40px] flex flex-col md:flex-row items-center gap-8 sm:gap-12 md:gap-16 relative overflow-hidden">
-                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/20 rounded-full blur-[100px]"></div>
+            <div
+                class="glass-panel p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[40px] flex flex-col md:flex-row items-center gap-8 sm:gap-12 md:gap-16 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/20 rounded-full blur-[100px]">
+                </div>
 
                 <div class="w-full md:w-1/2 space-y-5 sm:space-y-8 relative z-10">
                     <div class="flex items-center gap-4">
@@ -233,28 +349,36 @@
                         "Creating immersive multiplayer worlds and intelligent AR experiences through code."
                     </p>
                     <p class="font-body-md text-sm sm:text-body-md text-on-surface/60">
-                        I am a passionate Unity and multiplayer game developer with experience in AR, AI-powered applications, and educational game development. I specialize in building immersive gameplay systems using Unity, Photon Fusion, Coherence Multiplayer, React.js, Node.js, and cloud-integrated AI technologies.
+                        I am a passionate Unity and multiplayer game developer with experience in AR, AI-powered
+                        applications, and educational game development. I specialize in building immersive gameplay
+                        systems using Unity, Photon Fusion, Coherence Multiplayer, React.js, Node.js, and
+                        cloud-integrated AI technologies.
                     </p>
                     <div class="grid grid-cols-2 gap-4 sm:gap-8 pt-2 sm:pt-8">
                         <div class="space-y-2">
-                            <span class="material-symbols-outlined text-tertiary text-3xl sm:text-4xl">sports_esports</span>
+                            <span
+                                class="material-symbols-outlined text-tertiary text-3xl sm:text-4xl">sports_esports</span>
                             <h4 class="font-bold text-sm sm:text-lg">Game Development</h4>
-                            <p class="text-xs sm:text-sm text-on-surface/50">Multiplayer gameplay systems, mechanics, AI, and optimization.</p>
+                            <p class="text-xs sm:text-sm text-on-surface/50">Multiplayer gameplay systems, mechanics,
+                                AI, and optimization.</p>
                         </div>
                         <div class="space-y-2">
                             <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">view_in_ar</span>
                             <h4 class="font-bold text-sm sm:text-lg">AR & AI</h4>
-                            <p class="text-xs sm:text-sm text-on-surface/50">Interactive AR applications with real-time AI wildlife detection.</p>
+                            <p class="text-xs sm:text-sm text-on-surface/50">Interactive AR applications with real-time
+                                AI wildlife detection.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex-1 w-full max-w-sm sm:max-w-md md:max-w-none">
-                    <div class="w-full aspect-square relative glass-panel rounded-full portal-frame p-4 sm:p-8 flex items-center justify-center">
-                        <img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-80"
-                            alt="My image"
+                    <div
+                        class="w-full aspect-square relative glass-panel rounded-full portal-frame p-4 sm:p-8 flex items-center justify-center">
+                        <img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-80" alt="My image"
                             src="images/myImg.jpg" />
-                        <div class="absolute inset-0 border-[2px] border-dashed border-primary/40 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                        <div
+                            class="absolute inset-0 border-[2px] border-dashed border-primary/40 rounded-full animate-[spin_20s_linear_infinite]">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -264,24 +388,32 @@
         <section class="section-py px-4 sm:px-8 md:px-20 max-w-[1440px] mx-auto" id="Projects">
             <div class="mb-10 sm:mb-20 text-center">
                 <h2 class="font-headline-lg text-headline-lg mb-3">The Projects</h2>
-                <p class="text-on-surface/60 max-w-xl mx-auto text-sm sm:text-base">Step through the threshold into the realities I have brought to life.</p>
+                <p class="text-on-surface/60 max-w-xl mx-auto text-sm sm:text-base">Step through the threshold into the
+                    realities I have brought to life.</p>
             </div>
 
             <div class="projects-grid">
                 <!-- Card 1: Wildlife AR -->
-                <div class="group relative aspect-[3/4] rounded-full overflow-hidden border border-tertiary-fixed-dim/30 p-2 hover:border-tertiary-fixed-dim transition-all duration-700 hover:scale-105">
-                    <div class="absolute inset-0 bg-tertiary-fixed-dim/10 group-hover:opacity-30 transition-opacity"></div>
+                <div
+                    class="group relative aspect-[3/4] rounded-full overflow-hidden border border-tertiary-fixed-dim/30 p-2 hover:border-tertiary-fixed-dim transition-all duration-700 hover:scale-105">
+                    <div class="absolute inset-0 bg-tertiary-fixed-dim/10 group-hover:opacity-30 transition-opacity">
+                    </div>
                     <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-surface-container">
                         <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_2bGpge2HFtWHs-oNYNOUUVzS9i4VL3-vZkKXDIPpTMgwFt5OOfx8BHz4oej8DeOsxM3_fBpHvibZIzLpTG6_I4lTnD3e49fXkERkIRHqAeviWYi50T5a7pTusJ5HjPKNIAJZ-Sg78KJFmCVHODVCFz6jbuyOKPoYHkUdFRl1xfg_lCfxLZF1xQaWCtJ-c0vBKQUQta15Ywd5qrPiGQEDjLc0IYXt9p_bcg8kJSwGAhfuPkhlhz2B-EmFsZW2wNk0ZlJW8dxCxSc"
                             alt="3D Wildlife AR">
-                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
                             <h3 class="font-headline-md text-headline-md mb-2 text-base sm:text-2xl">3D WILDLIFE AR</h3>
                             <div class="flex flex-wrap gap-1 sm:gap-2 justify-center mb-4 sm:mb-6">
-                                <span class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
-                                <span class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
-                                <span class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Python</span>
-                                <span class="px-2 py-1 bg-primary-fixed-dim/20 rounded-full text-[10px] sm:text-xs font-label-mono">YOLOv11</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
+                                <span
+                                    class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
+                                <span
+                                    class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Python</span>
+                                <span
+                                    class="px-2 py-1 bg-primary-fixed-dim/20 rounded-full text-[10px] sm:text-xs font-label-mono">YOLOv11</span>
                             </div>
                             <a href="wildlifeAR.html"
                                 class="bg-white text-black px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold flex items-center justify-center gap-2 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 text-sm sm:text-base">
@@ -292,17 +424,25 @@
                 </div>
 
                 <!-- Card 2: Nightfang -->
-                <div class="group relative aspect-[3/4] rounded-full overflow-hidden border border-primary-fixed-dim/30 p-2 hover:border-primary-fixed-dim transition-all duration-700 hover:scale-105 project-card-offset">
-                    <div class="absolute inset-0 bg-primary-fixed-dim/10 group-hover:opacity-30 transition-opacity"></div>
+                <div
+                    class="group relative aspect-[3/4] rounded-full overflow-hidden border border-primary-fixed-dim/30 p-2 hover:border-primary-fixed-dim transition-all duration-700 hover:scale-105 project-card-offset">
+                    <div class="absolute inset-0 bg-primary-fixed-dim/10 group-hover:opacity-30 transition-opacity">
+                    </div>
                     <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-surface-container">
                         <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125"
                             src="images/nightfallVampireImg/nightfall_1.png" alt="Nightfang Vampire Hunt">
-                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
-                            <h3 class="font-headline-md text-headline-md mb-2 text-base sm:text-2xl">NIGHTFANG: VAMPIRE HUNT</h3>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
+                            <h3 class="font-headline-md text-headline-md mb-2 text-base sm:text-2xl">NIGHTFANG: VAMPIRE
+                                HUNT</h3>
                             <div class="flex flex-wrap gap-1 sm:gap-2 justify-center mb-4 sm:mb-6">
-                                <span class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
-                                <span class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
-                                <span class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">2D Game</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
+                                <span
+                                    class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
+                                <span
+                                    class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">2D
+                                    Game</span>
                             </div>
                             <a href="nightfall.html"
                                 class="bg-white text-black px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold flex items-center justify-center gap-2 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 text-sm sm:text-base">
@@ -313,21 +453,30 @@
                 </div>
 
                 <!-- Card 3: Symphony of Drops -->
-                <div class="group relative aspect-[3/4] rounded-full overflow-hidden border border-primary/30 p-2 hover:border-primary transition-all duration-700 hover:scale-105">
-                    <div class="absolute inset-0 portal-gradient opacity-10 group-hover:opacity-30 transition-opacity"></div>
+                <div
+                    class="group relative aspect-[3/4] rounded-full overflow-hidden border border-primary/30 p-2 hover:border-primary transition-all duration-700 hover:scale-105">
+                    <div class="absolute inset-0 portal-gradient opacity-10 group-hover:opacity-30 transition-opacity">
+                    </div>
                     <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-surface-container">
                         <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125"
-                            src="images/Symphony/icon.png"
-                            alt="Symphony of Drops">
-                        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
-                            <h3 class="font-headline-md text-headline-md mb-2 text-base sm:text-2xl">SYMPHONY OF DROPS</h3>
+                            src="images/Symphony/icon.png" alt="Symphony of Drops">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12 text-center">
+                            <h3 class="font-headline-md text-headline-md mb-2 text-base sm:text-2xl">SYMPHONY OF DROPS
+                            </h3>
                             <div class="flex flex-wrap gap-1 sm:gap-2 justify-center mb-4 sm:mb-6">
-                                <span class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
-                                <span class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
-                                <span class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">2D Game</span>
+                                <span
+                                    class="px-2 py-1 bg-primary/20 rounded-full text-[10px] sm:text-xs font-label-mono">Unity</span>
+                                <span
+                                    class="px-2 py-1 bg-tertiary/20 rounded-full text-[10px] sm:text-xs font-label-mono">C#</span>
+                                <span
+                                    class="px-2 py-1 bg-secondary/20 rounded-full text-[10px] sm:text-xs font-label-mono">2D
+                                    Game</span>
                             </div>
-                            <button class="bg-white text-black px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold flex items-center justify-center gap-2 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 text-sm sm:text-base">
-                                <a href="SymphonyofDrops.html"><span class="material-symbols-outlined text-sm">play_arrow</span> View Project </a>
+                            <button
+                                class="bg-white text-black px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold flex items-center justify-center gap-2 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 text-sm sm:text-base">
+                                <a href="SymphonyofDrops.html"><span
+                                        class="material-symbols-outlined text-sm">play_arrow</span> View Project </a>
                             </button>
                         </div>
                     </div>
@@ -407,53 +556,64 @@
             <div class="px-4 sm:px-8 md:px-20 max-w-[1440px] mx-auto relative z-10">
                 <div class="text-center mb-10 sm:mb-20">
                     <h2 class="font-headline-lg text-headline-lg text-primary text-glow">The Skills</h2>
-                    <p class="font-label-caps text-label-caps text-on-surface/50 mt-2 uppercase tracking-widest">Technological Mastery</p>
+                    <p class="font-label-caps text-label-caps text-on-surface/50 mt-2 uppercase tracking-widest">
+                        Technological Mastery</p>
                 </div>
 
                 <div class="skills-grid">
                     <div class="flex flex-col items-center gap-4 sm:gap-6 floating">
-                        <div class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-primary/40 neon-glow relative">
-                            <span class="material-symbols-outlined text-3xl sm:text-5xl text-primary">sports_esports</span>
+                        <div
+                            class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-primary/40 neon-glow relative">
+                            <span
+                                class="material-symbols-outlined text-3xl sm:text-5xl text-primary">sports_esports</span>
                         </div>
                         <div class="text-center">
                             <p class="font-bold text-sm sm:text-base">Unity Engine</p>
-                            <div class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
+                            <div
+                                class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
                                 <div class="h-full w-[95%] bg-primary"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col items-center gap-4 sm:gap-6 floating delay-1">
-                        <div class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-tertiary/40 neon-glow relative">
+                        <div
+                            class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-tertiary/40 neon-glow relative">
                             <span class="material-symbols-outlined text-3xl sm:text-5xl text-tertiary">code</span>
                         </div>
                         <div class="text-center">
                             <p class="font-bold text-sm sm:text-base">C# / C++ / Java</p>
-                            <div class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
+                            <div
+                                class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
                                 <div class="h-full w-[90%] bg-tertiary"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col items-center gap-4 sm:gap-6 floating delay-2">
-                        <div class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-secondary/40 neon-glow relative">
+                        <div
+                            class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-secondary/40 neon-glow relative">
                             <span class="material-symbols-outlined text-3xl sm:text-5xl text-secondary">language</span>
                         </div>
                         <div class="text-center">
                             <p class="font-bold text-sm sm:text-base">Multiplayer</p>
-                            <div class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
+                            <div
+                                class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
                                 <div class="h-full w-[88%] bg-secondary"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col items-center gap-4 sm:gap-6 floating delay-3">
-                        <div class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-primary-fixed-dim/40 neon-glow relative">
-                            <span class="material-symbols-outlined text-3xl sm:text-5xl text-primary-fixed-dim">view_in_ar</span>
+                        <div
+                            class="w-20 h-20 sm:w-32 sm:h-32 rounded-full glass-panel flex items-center justify-center border-2 border-primary-fixed-dim/40 neon-glow relative">
+                            <span
+                                class="material-symbols-outlined text-3xl sm:text-5xl text-primary-fixed-dim">view_in_ar</span>
                         </div>
                         <div class="text-center">
                             <p class="font-bold text-sm sm:text-base">AR / AI Systems</p>
-                            <div class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
+                            <div
+                                class="w-20 sm:w-24 h-1.5 bg-surface-container-highest rounded-full mt-2 overflow-hidden">
                                 <div class="h-full w-[85%] bg-primary-fixed-dim"></div>
                             </div>
                         </div>
@@ -471,40 +631,52 @@
             <div class="relative pl-8 sm:pl-12 border-l-2 border-primary/20 space-y-12 sm:space-y-24">
 
                 <div class="relative">
-                    <div class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-primary/50 flex items-center justify-center bg-surface-container-lowest z-10">
+                    <div
+                        class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-primary/50 flex items-center justify-center bg-surface-container-lowest z-10">
                         <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                     </div>
                     <div class="space-y-2">
                         <span class="text-primary font-label-mono text-xs sm:text-label-mono">JAN 2026 — PRESENT</span>
-                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Unity Developer Intern @ DARKCITY ATELIER</h3>
+                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Unity Developer Intern @
+                            DARKCITY ATELIER</h3>
                         <p class="text-on-surface/70 leading-relaxed max-w-2xl text-sm sm:text-base">
-                            Developing the multiplayer 2D card game HeartReverse using Photon Fusion and Unity. Implementing multiplayer synchronization, gameplay systems, optimization, debugging, and interactive mechanics.
+                            Developing the multiplayer 2D card game HeartReverse using Photon Fusion and Unity.
+                            Implementing multiplayer synchronization, gameplay systems, optimization, debugging, and
+                            interactive mechanics.
                         </p>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <div class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-tertiary/50 flex items-center justify-center bg-surface-container-lowest z-10">
+                    <div
+                        class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-tertiary/50 flex items-center justify-center bg-surface-container-lowest z-10">
                         <div class="w-2 h-2 bg-tertiary rounded-full"></div>
                     </div>
                     <div class="space-y-2">
-                        <span class="text-tertiary font-label-mono text-xs sm:text-label-mono">NOV 2025 — MAY 2026</span>
-                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Game Developer Intern @ Eklavya.me</h3>
+                        <span class="text-tertiary font-label-mono text-xs sm:text-label-mono">NOV 2025 — MAY
+                            2026</span>
+                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Game Developer Intern @
+                            Eklavya.me</h3>
                         <p class="text-on-surface/70 leading-relaxed max-w-2xl text-sm sm:text-base">
-                            Developed educational mini-games and interactive web applications for children using React.js, Node.js, Tailwind CSS, and JavaScript.
+                            Developed educational mini-games and interactive web applications for children using
+                            React.js, Node.js, Tailwind CSS, and JavaScript.
                         </p>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <div class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-secondary/50 flex items-center justify-center bg-surface-container-lowest z-10">
+                    <div
+                        class="absolute -left-[42px] sm:-left-[54px] top-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full glass-panel border border-secondary/50 flex items-center justify-center bg-surface-container-lowest z-10">
                         <div class="w-2 h-2 bg-secondary rounded-full"></div>
                     </div>
                     <div class="space-y-2">
-                        <span class="text-secondary font-label-mono text-xs sm:text-label-mono">JUL 2025 — FEB 2026</span>
-                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Multiplayer Game Developer Intern @ Karma Play Limited</h3>
+                        <span class="text-secondary font-label-mono text-xs sm:text-label-mono">JUL 2025 — FEB
+                            2026</span>
+                        <h3 class="font-headline-md text-headline-md text-base sm:text-2xl">Multiplayer Game Developer
+                            Intern @ Karma Play Limited</h3>
                         <p class="text-on-surface/70 leading-relaxed max-w-2xl text-sm sm:text-base">
-                            Worked on Aquaverse, a multiplayer Unity game using Coherence Multiplayer for real-time synchronization and multiplayer gameplay systems.
+                            Worked on Aquaverse, a multiplayer Unity game using Coherence Multiplayer for real-time
+                            synchronization and multiplayer gameplay systems.
                         </p>
                     </div>
                 </div>
@@ -513,30 +685,40 @@
         </section>
 
         <!-- CONTACT -->
-        <section class="section-py px-4 sm:px-8 md:px-20 bg-gradient-to-b from-transparent to-surface-container-lowest/50" id="Summon">
-            <div class="max-w-2xl mx-auto glass-panel p-6 sm:p-12 md:p-16 rounded-[28px] sm:rounded-[40px] border-primary/10 relative">
+        <section
+            class="section-py px-4 sm:px-8 md:px-20 bg-gradient-to-b from-transparent to-surface-container-lowest/50"
+            id="Summon">
+            <div
+                class="max-w-2xl mx-auto glass-panel p-6 sm:p-12 md:p-16 rounded-[28px] sm:rounded-[40px] border-primary/10 relative">
                 <div class="absolute -top-12 -left-12 w-48 h-48 bg-tertiary/10 rounded-full blur-[80px]"></div>
                 <div class="text-center mb-8 sm:mb-16 relative z-10">
                     <h2 class="font-headline-lg text-headline-lg mb-3">Contact Me</h2>
-                    <p class="text-on-surface/60 text-sm sm:text-base">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+                    <p class="text-on-surface/60 text-sm sm:text-base">Have a project in mind or just want to say hi?
+                        I'd love to hear from you.</p>
                 </div>
                 <form class="space-y-8 sm:space-y-12 relative z-10" id="contactForm">
                     <div class="relative">
-                        <input class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-primary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl"
+                        <input
+                            class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-primary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl"
                             id="name" placeholder=" " type="text" required>
-                        <label class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-primary"
+                        <label
+                            class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-primary"
                             for="name">Your Name</label>
                     </div>
                     <div class="relative">
-                        <input class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-tertiary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl"
+                        <input
+                            class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-tertiary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl"
                             id="email" placeholder=" " type="email" required>
-                        <label class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-tertiary"
+                        <label
+                            class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-tertiary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-tertiary"
                             for="email">Your Email</label>
                     </div>
                     <div class="relative">
-                        <textarea class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-secondary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl resize-none"
+                        <textarea
+                            class="peer w-full bg-transparent border-0 border-b-2 border-outline/30 focus:border-secondary focus:ring-0 px-0 py-3 sm:py-4 transition-all outline-none text-base sm:text-xl resize-none"
                             id="message" placeholder=" " rows="4" required></textarea>
-                        <label class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-secondary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-secondary"
+                        <label
+                            class="absolute left-0 top-3 sm:top-4 font-label-caps text-label-caps text-on-surface/40 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-secondary peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-secondary"
                             for="message">Your Message</label>
                     </div>
                     <div id="formStatus" class="text-center font-label-caps text-label-caps hidden"></div>
@@ -550,7 +732,7 @@
     </main>
 
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function(e) {
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
             e.preventDefault();
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
@@ -564,6 +746,52 @@
                 window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=dikshitapurohitb@gmail.com&su=${subject}&body=${body}`, "_blank");
             }
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const emailLink = document.getElementById("emailLink");
+
+            emailLink.addEventListener("click", () => {
+                if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                    window.location.href = "mailto:dikshitapurohitb@gmail.com";
+                } else {
+                    window.open(
+                        "https://mail.google.com/mail/?view=cm&fs=1&to=dikshitapurohitb@gmail.com",
+                        "_blank"
+                    );
+                }
+            });
+        });
+
+        document.querySelectorAll('#nav-menu a, #nav-menu button').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('nav-toggle').checked = false;
+            });
+        });
     </script>
+    <footer
+        class="bg-surface-container-lowest border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-16 lg:px-20 py-12 gap-6 relative z-10 text-center md:text-left">
+        <div class="flex flex-col gap-2">
+            <div class="font-label-mono text-on-surface text-lg font-medium">Dikshita B</div>
+            <button id="emailLink" class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                Email
+            </button>
+
+            <a href="https://github.com/dikshita-purohit/" target="_blank"
+                class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                GitHub
+            </a>
+            <a href="https://dikshita.artstation.com/" target="_blank"
+                class="px-6 py-1  rounded-lg font-bold transition-all flex gap-3">
+                <!-- <span class="material-symbols-outlined text-sm">code</span>  -->
+                Artstation
+            </a>
+            </br>
+            <div class="text-sm text-on-surface-variant">© 2026 Dikshita — All content and trademarks property of their
+                respective owners.</div>
+        </div>
+    </footer>
 </body>
+
 </html>
