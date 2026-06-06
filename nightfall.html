@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nightfang: Vampire Hunt — Dikshita</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#d0bcff",
+                        "on-primary-container": "#400071",
+                        "surface-container-high": "#2e2832",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#f751a1",
+                        "primary-container": "#b76dff",
+                        "on-primary-fixed": "#2c0051",
+                        "on-secondary": "#3c0091",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "background": "#16111b",
+                        "on-secondary-container": "#c4abff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "primary": "#ddb7ff",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "on-primary": "#490080",
+                        "tertiary-fixed": "#ffd9e4",
+                        "surface": "#16111b",
+                        "surface-tint": "#ddb7ff",
+                        "surface-container": "#231e27",
+                        "inverse-surface": "#eadfed",
+                        "surface-dim": "#16111b",
+                        "surface-bright": "#3d3741",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#e9ddff",
+                        "inverse-on-surface": "#342e38",
+                        "tertiary": "#ffb0cd",
+                        "on-tertiary-container": "#570032",
+                        "surface-variant": "#39323d",
+                        "on-tertiary": "#640039",
+                        "on-tertiary-fixed-variant": "#8c0053",
+                        "surface-container-low": "#1f1a23",
+                        "on-surface-variant": "#cfc2d6",
+                        "on-background": "#eadfed",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-highest": "#39323d",
+                        "primary-fixed": "#f0dbff",
+                        "on-surface": "#eadfed",
+                        "secondary-container": "#571bc1",
+                        "inverse-primary": "#842bd2",
+                        "outline-variant": "#4d4354",
+                        "outline": "#988d9f",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "tertiary-fixed-dim": "#ffb0cd",
+                        "surface-container-lowest": "#110c15"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["Space Grotesk"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #110c15;
+            color: #eadfed;
+            overflow-x: hidden;
+        }
+
+        .ethereal-mist {
+            background: radial-gradient(circle at 50% 50%, rgba(221, 183, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cyan-grid {
+            background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(208, 188, 255, 0.1);
+        }
+
+        .portal-frame {
+            mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+        }
+
+        .skill-orb {
+            box-shadow: 0 0 20px rgba(221, 183, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .timeline-glow {
+            box-shadow: 0 0 15px rgba(208, 188, 255, 0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #nav-toggle:checked~#nav-menu {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-sm sm:text-base selection:bg-primary/30 selection:text-white">
+
+    <!-- Top Nav -->
+    <nav
+        class="fixed top-0 left-2 right-2 sm:left-4 sm:right-4 md:left-4 md:right-4 lg:left-4 lg:right-4 bg-surface/40 backdrop-blur-xl rounded-2xl mt-4 border border-primary/20 shadow-[0_0_20px_rgba(183,109,255,0.2)] z-50 transition-all duration-300 ease-out px-4 sm:px-8 md:px-16 lg:px-20 py-4">
+        <div class="max-w-[1440px] mx-auto flex flex-wrap justify-between items-center">
+            <div
+                class="text-xl sm:text-2xl md:text-3xl font-bold text-primary drop-shadow-[0_0_10px_rgba(221,183,255,0.5)] font-headline-lg">
+                Nightfang: Vampire Hunt
+            </div>
+
+            <input type="checkbox" id="nav-toggle" class="hidden" />
+            <label for="nav-toggle"
+                class="md:hidden flex items-center p-2 text-on-surface-variant hover:text-primary cursor-pointer select-none">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </label>
+
+            <div id="nav-menu"
+                class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-4 md:gap-8 items-center border-t border-outline-variant/10 md:border-t-0 pt-4 md:pt-0">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="index.html">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#overview">Overview</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#features">Features</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#mechanics">Mechanics</a>
+                <a href="#contact"
+                    class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm">Contact
+                    Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 min-h-screen relative">
+        <div class="absolute inset-0 ethereal-mist"></div>
+        <div class="absolute inset-0 cyan-grid opacity-20 pointer-events-none"></div>
+
+        <!-- Hero Section -->
+        <section id="overview" class="relative px-4 sm:px-8 md:px-16 lg:px-20 py-12 md:py-20 overflow-hidden">
+            <div class="max-w-[1440px] mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+                <div class="flex-1 z-10 text-center md:text-left w-full">
+                    <span class="font-label-caps text-xs text-primary tracking-widest mb-4 block font-bold">UNITY · C# ·
+                        2D GAME</span>
+                    <h1
+                        class="text-4xl sm:text-5xl lg:text-6xl font-black text-on-background mb-6 leading-tight font-display-xl">
+                        Nightfang:<br /><span class="text-tertiary">Vampire Hunt</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-secondary mb-2 font-semibold">2D Gothic Vampire Shooter</p>
+                    <p class="text-base text-on-surface-variant mb-8">Developed by <span
+                            class="text-primary font-bold">Dikshita</span></p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="videos/nightfall_demo.mp4"
+                            class="px-8 py-4 bg-primary text-on-primary-container rounded-lg font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg">
+                            <span class="material-symbols-outlined">play_circle</span> Play Demo
+                        </a>
+                        <a href="https://github.com/dikshita-purohit/Nightfang-Vampire-Hunt"
+                            class="px-8 py-4 border border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all text-center">
+                            GitHub Repository
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full max-w-sm sm:max-w-md md:max-w-none">
+                    <div
+                        class="w-full aspect-square relative glass-panel rounded-full portal-frame p-4 sm:p-8 flex items-center justify-center">
+                        <img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-80"
+                            alt="Gothic vampire hunt cinematic concept art"
+                            src="/images/nightfallVampireImg/nightfall_1.png" />
+                        <div
+                            class="absolute inset-0 border-[2px] border-dashed border-primary/40 rounded-full animate-[spin_20s_linear_infinite]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Vision -->
+        <section class="px-4 sm:px-8 md:px-16 lg:px-20 py-12 relative">
+            <div class="max-w-[1440px] mx-auto glass-panel p-6 sm:p-12 rounded-3xl border-l-4 border-l-primary">
+                <h2 class="text-3xl font-bold mb-6 text-on-surface font-headline-lg">The Vision</h2>
+                <p class="text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed">
+                    Nightfang: Vampire Hunt is a fast-paced 2D vampire shooter built entirely in Unity with C#. The game
+                    features responsive player controls, custom enemy AI, collectibles, a scoring system, UI management,
+                    and polished collision detection — all hand-coded to deliver smooth and satisfying player-enemy
+                    interactions. Every system from shooting mechanics to swarm AI was designed to create an engaging,
+                    replayable combat experience set in a dark gothic world.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-primary font-bold text-lg sm:text-xl">Shooter</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">Game
+                            Genre</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-secondary font-bold text-lg sm:text-xl">Unity</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">
+                            Engine</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-tertiary font-bold text-lg sm:text-xl">C#</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">
+                            Language</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-primary font-bold text-lg sm:text-xl">2D</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">
+                            Perspective</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="tech" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16">
+            <div class="max-w-[1440px] mx-auto">
+                <h3 class="font-label-caps text-xs font-bold text-tertiary mb-12 text-center tracking-widest uppercase">
+                    TECH STACK</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div
+                        class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-primary">view_in_ar</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Unity</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:0.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-secondary">terminal</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">C#</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:1s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-primary">psychology</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Enemy AI</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:1.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-tertiary">track_changes</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Physics</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:2s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-secondary">leaderboard</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Scoring</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:2.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-tertiary">dashboard</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">UI System</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Features -->
+        <section id="features" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 bg-surface-container-lowest/50">
+            <div class="max-w-[1440px] mx-auto">
+                <h3 class="text-3xl font-bold mb-12 font-headline-lg">Project Features</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[6/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Dark forest biome game level" src="images/nightfallVampireImg/shooting.png" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-primary mb-2">Shooting System</h4>
+                            <p class="text-sm text-on-surface-variant">Hand-coded projectile system with directional
+                                aiming, hit detection, and real-time score triggers on every enemy kill.</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[6/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Moonlit gothic castle level" src="/images/nightfallVampireImg/vampImg.png" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-secondary mb-2">Enemy AI Behavior</h4>
+                            <p class="text-sm text-on-surface-variant">Custom C# behavior trees power enemy chase,
+                                flanking, swarm cohesion, and retreat logic for dynamic and reactive combat.</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[6/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Intense vampire swarm combat" src="/images/nightfallVampireImg/ui.png" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-tertiary mb-2">Scoring, UI & Collectibles</h4>
+                            <p class="text-sm text-on-surface-variant">Full scoring pipeline with collectibles, HUD,
+                                health bars, and game-state screens — all managed via C# UI controllers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Contributions -->
+                <div class="mt-16 glass-panel rounded-3xl p-6 sm:p-10 border-l-4 border-l-secondary">
+                    <h4 class="font-label-caps text-xs font-bold text-secondary mb-6 tracking-widest uppercase">Key
+                        Contributions</h4>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-primary mt-1 shrink-0">check_circle</span>
+                            <p class="text-base text-on-surface-variant">Developed a complete 2D vampire shooter in
+                                Unity with C# — covering responsive controls, enemy AI, collectibles, scoring systems,
+                                collision detection, UI management, and overall gameplay mechanics for an engaging
+                                player experience.</p>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-secondary mt-1 shrink-0">check_circle</span>
+                            <p class="text-base text-on-surface-variant">Implemented core gameplay mechanics including
+                                the shooting system, enemy behavior trees, and collision detection to enable smooth and
+                                engaging player-enemy interactions.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mechanics Layout -->
+        <section id="mechanics" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 relative">
+            <div class="max-w-[1440px] mx-auto">
+                <h3 class="text-3xl font-bold mb-16 text-center font-headline-lg">Gameplay Architecture</h3>
+
+                <div class="relative max-w-4xl mx-auto flex flex-col gap-8 md:gap-0">
+                    <div
+                        class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-tertiary timeline-glow">
+                    </div>
+
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl text-left md:text-right">
+                            <h4 class="font-label-caps text-xs font-bold text-primary mb-2 tracking-widest uppercase">
+                                PLAYER INPUT</h4>
+                            <p class="text-sm text-on-surface">Responsive controls capture player movement and aim
+                                direction, feeding into the shooting and collision systems every frame.</p>
+                        </div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-primary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-secondary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                        </div>
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl">
+                            <h4 class="font-label-caps text-xs font-bold text-secondary mb-2 tracking-widest uppercase">
+                                SHOOTING & COLLISION</h4>
+                            <p class="text-sm text-on-surface">Projectiles are spawned, tracked, and checked against
+                                enemy hitboxes each frame — triggering damage, death animations, and score updates on
+                                contact.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl text-left md:text-right">
+                            <h4 class="font-label-caps text-xs font-bold text-primary mb-2 tracking-widest uppercase">
+                                ENEMY AI</h4>
+                            <p class="text-sm text-on-surface">Behavior trees evaluate player position and health each
+                                tick — switching enemies between aggro, flanking, swarm, and retreat states in real
+                                time.</p>
+                        </div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-primary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full">
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-tertiary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-tertiary rounded-full"></div>
+                        </div>
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl">
+                            <h4 class="font-label-caps text-xs font-bold text-tertiary mb-2 tracking-widest uppercase">
+                                SCORING & UI</h4>
+                            <p class="text-sm text-on-surface">Score, collectibles, and health update the HUD in real
+                                time. Game-state managers handle pause, win, and lose screens through C# UI controllers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 bg-surface-container-lowest/50">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="glass-panel rounded-3xl p-6 sm:p-12 max-w-2xl mx-auto text-center border border-primary/20">
+                    <div
+                        class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-bold text-primary font-headline-lg">D</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-on-surface mb-2 font-headline-lg">Dikshita</h3>
+                    <p class="font-label-caps text-xs font-bold text-primary mb-6 tracking-widest uppercase">Game
+                        Developer · Unity · C#</p>
+                    <p class="text-base text-on-surface-variant mb-8">Passionate about building immersive game
+                        experiences from the ground up. Open to collaboration, internships, and game dev opportunities.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="https://github.com/dikshita-purohit/" target="_blank"
+                            class="w-full sm:w-auto px-6 py-3 border border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </a>
+                        <a href="index.html#Summon"
+                            class="w-full sm:w-auto px-6 py-3 bg-primary text-on-primary-container rounded-lg font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">mail</span> Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="bg-surface-container-lowest border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-16 lg:px-20 py-12 gap-6 relative z-10 text-center md:text-left">
+            <div class="flex flex-col gap-2">
+                <div class="font-label-mono text-on-surface text-lg font-medium">Nightfang: Vampire Hunt</div>
+                <div class="text-sm text-on-surface-variant">© 2026 Dikshita — All rights reserved</div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>

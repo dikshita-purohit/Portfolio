@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>3D Wildlife AR — Dikshita</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#d0bcff",
+                        "on-primary-container": "#400071",
+                        "surface-container-high": "#2e2832",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#f751a1",
+                        "primary-container": "#b76dff",
+                        "on-primary-fixed": "#2c0051",
+                        "on-secondary": "#3c0091",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "background": "#16111b",
+                        "on-secondary-container": "#c4abff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "primary": "#ddb7ff",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "on-primary": "#490080",
+                        "tertiary-fixed": "#ffd9e4",
+                        "surface": "#16111b",
+                        "surface-tint": "#ddb7ff",
+                        "surface-container": "#231e27",
+                        "inverse-surface": "#eadfed",
+                        "surface-dim": "#16111b",
+                        "surface-bright": "#3d3741",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#e9ddff",
+                        "inverse-on-surface": "#342e38",
+                        "tertiary": "#ffb0cd",
+                        "on-tertiary-container": "#570032",
+                        "surface-variant": "#39323d",
+                        "on-tertiary": "#640039",
+                        "on-tertiary-fixed-variant": "#8c0053",
+                        "surface-container-low": "#1f1a23",
+                        "on-surface-variant": "#cfc2d6",
+                        "on-background": "#eadfed",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-highest": "#39323d",
+                        "primary-fixed": "#f0dbff",
+                        "on-surface": "#eadfed",
+                        "secondary-container": "#571bc1",
+                        "inverse-primary": "#842bd2",
+                        "outline-variant": "#4d4354",
+                        "outline": "#988d9f",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "tertiary-fixed-dim": "#ffb0cd",
+                        "surface-container-lowest": "#110c15"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+                    },
+                    spacing: {
+                        unit: "8px", gutter: "32px", "container-max": "1440px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["Space Grotesk"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "label-mono": ["14px", { lineHeight: "1", fontWeight: "500" }],
+                        "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "headline-lg-mobile": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "headline-lg": ["48px", { lineHeight: "1.2", fontWeight: "700" }],
+                        "display-xl": ["72px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #110c15;
+            color: #eadfed;
+            overflow-x: hidden;
+        }
+
+        .ethereal-mist {
+            background: radial-gradient(circle at 50% 50%, rgba(221, 183, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cyan-grid {
+            background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(208, 188, 255, 0.1);
+        }
+
+        .portal-frame {
+            mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+        }
+
+        .skill-orb {
+            box-shadow: 0 0 20px rgba(221, 183, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .timeline-glow {
+            box-shadow: 0 0 15px rgba(208, 188, 255, 0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #nav-toggle:checked~#nav-menu {
+            display: flex;
+        }
+    </style>
+</head>
+<!-- fixed top-0 left-2 right-2 sm:left-4 sm:right-4 md:left-4 md:right-4 lg:left-4 lg:right-4 nav-pill bg-surface/40 backdrop-blur-xl rounded-2xl mt-4 border border-primary/20 shadow-[0_0_20px_rgba(183,109,255,0.2)] duration-300 ease-out px-4 sm:px-8 md:px-16 lg:px-20 py-4 -->
+<body class="font-body-md text-sm sm:text-base selection:bg-primary/30 selection:text-white">
+
+    <nav
+        class="fixed top-0 left-2 right-2 sm:left-4 sm:right-4 md:left-4 md:right-4 lg:left-4 lg:right-4 bg-surface/40 backdrop-blur-xl rounded-2xl mt-4 border border-primary/20 shadow-[0_0_20px_rgba(183,109,255,0.2)] z-50 transition-all duration-300 ease-out px-4 sm:px-8 md:px-16 lg:px-20 py-4">
+        <div class="max-w-container-max mx-auto flex flex-wrap justify-between items-center">
+            <div
+                class="text-xl sm:text-2xl md:text-3xl font-bold text-primary drop-shadow-[0_0_10px_rgba(221,183,255,0.5)] font-headline-lg">
+                3D Wildlife AR
+            </div>
+
+            <input type="checkbox" id="nav-toggle" class="hidden" />
+            <label for="nav-toggle"
+                class="md:hidden flex items-center p-2 text-on-surface-variant hover:text-primary cursor-pointer select-none">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </label>
+
+            <div id="nav-menu"
+                class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-4 md:gap-8 items-center border-t border-outline-variant/10 md:border-t-0 pt-4 md:pt-0">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="index.html">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#overview">Overview</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#features">Features</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs tracking-wider uppercase"
+                    href="#architecture">Architecture</a>
+                <a href="#contact"
+                    class="w-full md:w-auto text-center px-6 py-2 bg-primary text-on-primary-container rounded-full font-bold hover:shadow-[0_0_20px_rgba(221,183,255,0.6)] transition-all text-sm">Contact
+                    Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 min-h-screen relative">
+        <div class="absolute inset-0 ethereal-mist"></div>
+        <div class="absolute inset-0 cyan-grid opacity-20 pointer-events-none"></div>
+
+        <section id="overview" class="relative px-4 sm:px-8 md:px-16 lg:px-20 py-12 md:py-20 overflow-hidden">
+            <div class="max-w-container-max mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+                <div class="flex-1 z-10 text-center md:text-left w-full">
+                    <span class="font-label-caps text-xs text-primary tracking-widest mb-4 block font-bold">AI + AR
+                        MOBILE APPLICATION</span>
+                    <h1
+                        class="text-4xl sm:text-5xl lg:text-6xl font-black text-on-background mb-6 leading-tight font-display-xl">
+                        3D Wildlife AR
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-secondary mb-6 font-semibold leading-snug">Real-Time Animal
+                        Detection using AI and Augmented Reality</p>
+                    <p class="text-base text-on-surface-variant mb-8">Developed by <span
+                            class="text-primary font-bold">Dikshita</span></p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="videos/wildlifevid.mp4"
+                            class="px-8 py-4 bg-primary text-on-primary-container rounded-lg font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg">
+                            <span class="material-symbols-outlined">play_circle</span> View Demo
+                        </a>
+                        <a href="https://github.com/dikshita-purohit/" target="_blank"
+                            class="px-8 py-4 border border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all text-center">
+                            GitHub Repository
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full max-w-sm sm:max-w-md md:max-w-none">
+                    <div
+                        class="w-full aspect-square relative glass-panel rounded-full portal-frame p-4 sm:p-8 flex items-center justify-center">
+                        <img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-80"
+                            alt="Holographic 3D fox in augmented reality"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_2bGpge2HFtWHs-oNYNOUUVzS9i4VL3-vZkKXDIPpTMgwFt5OOfx8BHz4oej8DeOsxM3_fBpHvibZIzLpTG6_I4lTnD3e49fXkERkIRHqAeviWYi50T5a7pTusJ5HjPKNIAJZ-Sg78KJFmCVHODVCFz6jbuyOKPoYHkUdFRl1xfg_lCfxLZF1xQaWCtJ-c0vBKQUQta15Ywd5qrPiGQEDjLc0IYXt9p_bcg8kJSwGAhfuPkhlhz2B-EmFsZW2wNk0ZlJW8dxCxSc" />
+                        <div
+                            class="absolute inset-0 border-[2px] border-dashed border-primary/40 rounded-full animate-[spin_20s_linear_infinite]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 sm:px-8 md:px-16 lg:px-20 py-12 relative">
+            <div class="max-w-container-max mx-auto glass-panel p-6 sm:p-12 rounded-3xl border-l-4 border-l-primary">
+                <h2 class="text-3xl font-bold mb-6 text-on-surface font-headline-lg">The Vision</h2>
+                <p class="text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed">
+                    3D Wildlife AR is an AI-powered augmented reality mobile application built with Unity, YOLOv11,
+                    Python, and cloud-based services. The app captures real-world camera images, detects animal species
+                    using a custom-trained deep learning model, and overlays interactive 3D animal models directly into
+                    the user's environment via AR. By combining computer vision, real-time object detection, cloud AI
+                    inference via Azure, and Gemini AI for species data, it delivers an educational and immersive
+                    wildlife exploration experience.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-primary font-bold text-lg sm:text-xl">YOLOv11</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">
+                            Detection Model</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-primary font-bold text-lg sm:text-xl">Azure</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">Cloud
+                            Inference</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-secondary font-bold text-lg sm:text-xl">Unity</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">AR
+                            Engine</div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-4 text-center">
+                        <div class="text-tertiary font-bold text-lg sm:text-xl">3D AR</div>
+                        <div class="font-label-caps text-xs text-on-surface-variant mt-1 uppercase tracking-wider">
+                            Visualization</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16">
+            <div class="max-w-container-max mx-auto">
+                <h3 class="font-label-caps text-xs font-bold text-tertiary mb-12 text-center tracking-widest uppercase">
+                    TECH STACK</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div
+                        class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-primary">view_in_ar</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Unity</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:0.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-secondary">terminal</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">C#</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:1s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-tertiary">code</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Python</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:1.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-primary">psychology</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">YOLOv11</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:2s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-secondary">cloud</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Azure</span>
+                    </div>
+                    <div class="skill-orb bg-surface-container-high rounded-full flex flex-col items-center justify-center p-4 gap-2 border border-outline-variant/30 aspect-square"
+                        style="animation-delay:2.5s">
+                        <span class="material-symbols-outlined text-3xl sm:text-4xl text-tertiary">auto_awesome</span>
+                        <span class="font-label-mono text-xs sm:text-sm font-medium">Gemini AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 bg-surface-container-lowest/50">
+            <div class="max-w-container-max mx-auto">
+                <h3 class="text-3xl font-bold mb-4 font-headline-lg">Project Features</h3>
+                <p class="text-base text-on-surface-variant mb-12 max-w-2xl">A full-stack AI + AR pipeline — from camera
+                    capture to real-time 3D animal visualization, all processed through cloud inference.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[4/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="AR deer hologram in a living room" src="images/WildlifeArImg/img2.jpeg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-primary mb-2">Real-Time Animal Detection</h4>
+                            <p class="text-sm text-on-surface-variant">Custom-trained YOLOv11 model identifies wildlife
+                                species from live camera frames with high accuracy and low latency.</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[4/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Holographic fox in snowy park" src="images/WildlifeArImg/img3.png" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-secondary mb-2">Interactive 3D AR Models</h4>
+                            <p class="text-sm text-on-surface-variant">Animated 3D wildlife models are rendered in the
+                                user's real environment via Unity AR Foundation with touch interaction support.</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-3xl glass-panel flex flex-col">
+                        <div class="aspect-[4/5] overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Holographic panda in bamboo forest" src="images/WildlifeArImg/img1.jpeg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 pointer-events-none">
+                        </div>
+                        <div class="p-6 sm:p-8 mt-auto relative z-10">
+                            <h4 class="text-xl font-bold text-tertiary mb-2">Cloud AI + Gemini Integration</h4>
+                            <p class="text-sm text-on-surface-variant">Azure endpoints with VS Code port forwarding
+                                enable seamless cloud inference. Gemini AI delivers real-time species facts and
+                                ecological data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 glass-panel rounded-3xl p-6 sm:p-10 border-l-4 border-l-secondary">
+                    <h4 class="font-label-caps text-xs font-bold text-secondary mb-6 tracking-widest uppercase">Key
+                        Contributions</h4>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-primary mt-1 shrink-0">check_circle</span>
+                            <p class="text-base text-on-surface-variant">Led end-to-end development of a
+                                cloud-integrated AR mobile app using a custom-trained YOLOv11 model for real-time
+                                wildlife detection and 3D visualization.</p>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-secondary mt-1 shrink-0">check_circle</span>
+                            <p class="text-base text-on-surface-variant">Integrated Azure endpoints, VS Code port
+                                forwarding, and Unity to enable seamless cloud inference pipelines without local GPU
+                                dependency.</p>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-tertiary mt-1 shrink-0">check_circle</span>
+                            <p class="text-base text-on-surface-variant">Leveraged Gemini AI for real-time species data
+                                overlays and 3D animal interaction, creating an educational and engaging AR experience.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 relative">
+            <div class="max-w-container-max mx-auto">
+                <h3 class="text-3xl font-bold mb-16 text-center font-headline-lg">AI Workflow Architecture</h3>
+
+                <div class="relative max-w-4xl mx-auto flex flex-col gap-8 md:gap-0">
+                    <div
+                        class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-tertiary timeline-glow">
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl text-left md:text-right">
+                            <h4 class="font-label-caps text-xs font-bold text-primary mb-2 tracking-widest uppercase">
+                                IMAGE CAPTURE</h4>
+                            <p class="text-sm text-on-surface">The Unity mobile app captures live camera frames and
+                                sends them via HTTP to the cloud AI server for processing.</p>
+                        </div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-primary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-secondary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                        </div>
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl">
+                            <h4 class="font-label-caps text-xs font-bold text-secondary mb-2 tracking-widest uppercase">
+                                YOLO + CLOUD INFERENCE</h4>
+                            <p class="text-sm text-on-surface">A Python backend on Azure runs the YOLOv11 model, detects
+                                species, and queries Gemini AI for species data — results returned as JSON.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:mb-20">
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl text-left md:text-right">
+                            <h4 class="font-label-caps text-xs font-bold text-primary mb-2 tracking-widest uppercase">
+                                DATA DELIVERY</h4>
+                            <p class="text-sm text-on-surface">Detection results and species metadata are sent back to
+                                the Unity app via Azure endpoints, forwarded through VS Code port forwarding.</p>
+                        </div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-primary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row justify-between items-center w-full">
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div
+                            class="hidden md:flex w-8 h-8 bg-surface border-2 border-tertiary rounded-full z-10 items-center justify-center">
+                            <div class="w-2 h-2 bg-tertiary rounded-full"></div>
+                        </div>
+                        <div class="w-full md:w-[45%] glass-panel p-6 rounded-2xl">
+                            <h4 class="font-label-caps text-xs font-bold text-tertiary mb-2 tracking-widest uppercase">
+                                AR VISUALIZATION</h4>
+                            <p class="text-sm text-on-surface">The detected animal is matched to its 3D model and
+                                rendered in AR using Unity AR Foundation, with real-time species info overlays.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 bg-surface-container-lowest/50">
+            <div class="max-w-container-max mx-auto">
+                <div class="glass-panel rounded-3xl p-6 sm:p-12 max-w-2xl mx-auto text-center border border-primary/20">
+                    <div
+                        class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-bold text-primary font-headline-lg">D</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-on-surface mb-2 font-headline-lg">Dikshita</h3>
+                    <p class="font-label-caps text-xs font-bold text-primary mb-6 tracking-widest uppercase">Developer ·
+                        AI & AR Engineer</p>
+                    <p class="text-base text-on-surface-variant mb-8">Built this project as a demonstration of
+                        integrating computer vision, cloud AI, and augmented reality into a seamless mobile experience.
+                        Open to collaboration and opportunities.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="https://github.com/dikshita-purohit/" target="_blank"
+                            class="w-full sm:w-auto px-6 py-3 border border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </a>
+                        <a href="index.html#Summon"
+                            class="w-full sm:w-auto px-6 py-3 bg-primary text-on-primary-container rounded-lg font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">mail</span> Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
